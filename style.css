@@ -29,6 +29,8 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    position: relative;
+    z-index: 2; /* Sits cleanly in front of the background particles */
 }
 
 .header-group {
@@ -78,7 +80,7 @@ h2 {
     font-size: clamp(16px, 2.2vw, 24px);
     letter-spacing: 0.15em;
     margin: 0 0 12px 0;
-    color: #ffbe0b;
+    color: #ffbe0b; /* Vibrant gold from the official coat of arms */
     font-weight: 700;
 }
 
@@ -155,22 +157,71 @@ h2 {
     font-weight: 700;
 }
 
-/* Full-width white footer bar styling */
+/* Solid white bottom bar container */
 .full-width-footer {
     width: 100%;
-    background-color: #ffffff; /* Sets the solid white bar */
+    background-color: #ffffff;
     padding: 15px 0;
     display: flex;
     justify-content: center;
     align-items: center;
     box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.15);
     margin-top: auto;
+    position: relative;
+    z-index: 10;
 }
 
 .footer-logo {
     max-width: min(240px, 55vw);
     height: auto;
     display: block;
+}
+
+/* --- ANIMATED BG PARTICLES AND TRANSITIONS --- */
+#particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    background: rgba(255, 190, 11, 0.15); /* Light gold ambient particles to match the theme */
+    border-radius: 50%;
+    animation: floatUp 15s linear infinite;
+    bottom: -20px;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.6;
+    }
+    90% {
+        opacity: 0.6;
+    }
+    100% {
+        transform: translateY(-105vh) scale(0.5);
+        opacity: 0;
+    }
+}
+
+/* Smooth micro-pulsing transition effect for countdown updates */
+.pop {
+    animation: digitPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes digitPop {
+    0% { transform: scale(0.92); opacity: 0.8; }
+    100% { transform: scale(1); opacity: 1; }
 }
 
 @media(max-width: 650px) {
