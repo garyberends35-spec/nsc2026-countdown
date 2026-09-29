@@ -11,7 +11,12 @@ function update() {
     let x = target - Date.now();
     
     if (x <= 0) {
-        timer.innerHTML = '<div style="grid-column:1/-1"><b style="font-family:Arial, sans-serif; font-size:clamp(22px, 4vw, 45px);">NSC 2026 HAS ARRIVED</b></div>';
+        timer.innerHTML = `
+            <div style="grid-column: 1 / -1; padding: 40px 20px; border-color: #ffbe0b; background: rgba(255, 190, 11, 0.08);">
+                <b style="font-family: 'Segoe UI', Arial, sans-serif; font-size: clamp(22px, 4.5vw, 42px); text-shadow: 0 0 25px rgba(255,190,11,0.4); color: #ffbe0b;">
+                    NSC 2026 HAS ARRIVED
+                </b>
+            </div>`;
         return;
     }
     
