@@ -18,10 +18,8 @@ body {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    /* Combines a dark radial mask with the cafe picture to protect text visibility */
-    background: radial-gradient(circle at center, rgba(8, 41, 82, 0.05) 0%, rgba(3, 20, 43, 0.22) 65%, rgba(1, 7, 16, 0.45) 100%),
-                url('image_gvVeYG.png') no-repeat center center fixed;
-    background-size: cover;
+    background: #020914;
+    overflow-x: hidden;
 }
 
 main {
@@ -311,4 +309,59 @@ h2 {
         padding: 10px 16px;
         text-align: center;
     }
+}
+
+
+/* ===== WOW UPGRADE ===== */
+.bg, .bg-shade { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+.bg {
+    background: #020914 url('bg-tiny.webp') center/cover;
+    transform: scale(1.06);
+    animation: bgIn 2.2s ease-out both, drift 40s ease-in-out 2.2s infinite alternate;
+}
+.bg::before { content:""; position:absolute; inset:0; background: url('bg.webp') center/cover; animation: fadeIn 1.2s ease-out both; }
+.bg-shade { background: radial-gradient(circle at 50% 45%, rgba(8,41,82,.05) 0%, rgba(3,20,43,.25) 65%, rgba(1,7,16,.55) 100%); }
+@keyframes fadeIn { from {opacity:0} to {opacity:1} }
+@keyframes bgIn { from { opacity:0; transform: scale(1.18);} to { opacity:1; transform: scale(1.06);} }
+@keyframes drift { from { transform: scale(1.06) translate(0,0);} to { transform: scale(1.12) translate(-1.2%,-1%);} }
+
+/* Warm bokeh instead of hard dots */
+.particle { background: radial-gradient(circle, rgba(255,200,90,.55), rgba(255,170,40,.12) 70%, transparent); filter: blur(1.5px); }
+
+/* Typography hierarchy: numbers are the hero */
+#timer b { font: 400 clamp(54px, 11vw, 132px)/.9 'Bebas Neue', Impact, 'Arial Narrow', sans-serif; letter-spacing: .03em; font-variant-numeric: tabular-nums;
+    text-shadow: 0 0 28px rgba(58,134,255,.75), 0 4px 14px rgba(0,0,0,.6); }
+.brand { font-family: 'Bebas Neue', Impact, sans-serif; font-weight: 400; letter-spacing: .08em; }
+#timer > div { position: relative; overflow: hidden; }
+#timer > div::after { content:""; position:absolute; left:0; bottom:0; height:4px; width: calc(var(--p, 1) * 100%);
+    background: linear-gradient(90deg,#3a86ff,#ffbe0b); box-shadow: 0 0 12px rgba(255,190,11,.7); transition: width .3s linear; }
+
+/* Digit roll */
+.pop { animation: roll .45s cubic-bezier(.2,.9,.3,1.2); }
+@keyframes roll { 0% { transform: translateY(-38%) rotateX(70deg); opacity:0; } 100% { transform: none; opacity:1; } }
+
+/* Final 24 hours */
+#timer.urgent > div { border-color: rgba(255,190,11,.75); animation: beat 1.2s ease-in-out infinite; }
+#timer.urgent b { color:#ffd166; text-shadow: 0 0 30px rgba(255,190,11,.85); }
+@keyframes beat { 50% { box-shadow: 0 15px 35px rgba(0,0,0,.6), 0 0 34px rgba(255,190,11,.45); } }
+
+/* Staggered entrance */
+.header-group, .message-card, .target, #timer > div, .share { animation: rise .9s cubic-bezier(.2,.8,.2,1) both; }
+.header-group { animation-delay: .5s; } .message-card { animation-delay: .8s; } .target { animation-delay: 1.0s; }
+#timer > div:nth-child(1){animation-delay:1.15s} #timer > div:nth-child(2){animation-delay:1.3s}
+#timer > div:nth-child(3){animation-delay:1.45s} #timer > div:nth-child(4){animation-delay:1.6s} .share { animation-delay: 1.9s; }
+@keyframes rise { from { opacity:0; transform: translateY(28px); } to { opacity:1; transform:none; } }
+.site-nav { animation: fadeIn 1s ease-out .3s both; }
+
+.share { display:inline-block; margin: 0 auto 10px; padding: 12px 28px; border-radius: 999px; background: #25d366; color:#04230f;
+    font-weight: 800; letter-spacing:.06em; text-decoration:none; box-shadow: 0 8px 24px rgba(0,0,0,.45); transition: transform .2s, box-shadow .2s; }
+.share:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 12px 30px rgba(37,211,102,.4); }
+.share:focus-visible { outline: 2px solid #ffbe0b; outline-offset: 3px; }
+
+#confetti { position: fixed; inset:0; width:100%; height:100%; z-index: 50; pointer-events:none; }
+#timer > div { transition: transform .15s ease-out, border-color .3s; will-change: transform; }
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    #particles { display: none; }
 }

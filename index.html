@@ -25,9 +25,17 @@
     <meta name="twitter:description" content="Success is Intentional! The countdown is on for the Class of 2026.">
     <meta name="twitter:image" content="https://garyberends35-spec.github.io/nsc2026-countdown/share-preview.jpg">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="preload" as="image" href="bg.webp" type="image/webp">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+    <!-- Cinematic background (fixed layer: smooth on iOS, slow zoom) -->
+    <div class="bg" aria-hidden="true"></div>
+    <div class="bg-shade" aria-hidden="true"></div>
 
     <!-- Top navigation -->
     <header class="site-nav">
@@ -64,7 +72,7 @@
         <p class="target">13 OCTOBER 2026 <span>• 00:00 SAST</span></p>
 
         <!-- Live JavaScript Countdown Display Grid -->
-        <div id="timer">
+        <div id="timer" role="timer" aria-live="off">
             <div>
                 <b id="days">000</b>
                 <small>DAYS</small>
@@ -82,7 +90,10 @@
                 <small>SECONDS</small>
             </div>
         </div>
+
+        <a class="share" id="share" href="#" target="_blank" rel="noopener noreferrer">Share on WhatsApp</a>
     </main>
+    <canvas id="confetti" aria-hidden="true"></canvas>
 
     <footer class="full-width-footer">
         <!-- Replace 'gauteng-logo.png' with your local Gauteng Department of Education logo path -->
