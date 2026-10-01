@@ -365,3 +365,51 @@ h2 {
     *, *::before, *::after { animation: none !important; transition: none !important; }
     #particles { display: none; }
 }
+
+/* Per-subject exam countdown */
+.sr { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); }
+.exams { width:min(94%,560px); margin: 26px auto 18px; padding: 20px 22px; border-radius: 20px; text-align:left;
+    background: rgba(3,20,43,.55); border:1px solid rgba(255,255,255,.14); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+    box-shadow: 0 12px 34px rgba(0,0,0,.45); animation: rise .9s cubic-bezier(.2,.8,.2,1) 1.75s both; }
+.exams h2 { margin:0 0 12px; font: 400 clamp(22px,4vw,30px)/1 'Bebas Neue', Impact, sans-serif; letter-spacing:.08em; color:#ffbe0b; }
+.exams select { width:100%; padding: 12px 14px; font-size:16px; color:#fff; background:#0b2a54; border:1px solid rgba(255,255,255,.25); border-radius:12px; }
+.exams select:focus-visible { outline:2px solid #ffbe0b; outline-offset:2px; }
+#papers { list-style:none; margin:14px 0 6px; padding:0; display:grid; gap:8px; }
+#papers li { display:grid; grid-template-columns: 1fr auto auto; gap: 14px; align-items:center; padding:11px 14px; border-radius:12px; background: rgba(255,255,255,.07); }
+#papers .pn { font-weight:700; } #papers .pd { color:#b9cbe6; font-size:14px; } #papers .pl { color:#ffd166; font-size:18px; min-width:72px; text-align:right; }
+#papers li.today { background: rgba(255,190,11,.22); outline:1px solid #ffbe0b; } #papers li.done { opacity:.45; }
+.exams .note { margin:8px 0 0; font-size:12px; color:#a9bdd8; }
+@media (max-width:480px){ #papers li { grid-template-columns: 1fr auto; } #papers .pd { grid-column:1; grid-row:2; } #papers .pl { grid-row:1 / span 2; grid-column:2; } }
+
+/* Weekly timetable */
+.timetable { width: min(96%, 860px); animation-delay: 1.9s; }
+.wk-tabs { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px; }
+.wk-tabs button { padding:8px 14px; border-radius:999px; border:1px solid rgba(255,255,255,.25); background: rgba(255,255,255,.07); color:#fff; font:600 14px inherit; cursor:pointer; }
+.wk-tabs button[aria-selected="true"] { background:#ffbe0b; color:#06223f; border-color:#ffbe0b; }
+.wk-tabs button:focus-visible { outline:2px solid #ffbe0b; outline-offset:2px; }
+.wk-tabs .print { margin-left:auto; background:transparent; }
+.tt-wrap { overflow-x:auto; }
+.timetable table { width:100%; border-collapse:collapse; font-size:14px; }
+.timetable caption { text-align:left; font-weight:700; color:#ffd166; padding:0 0 8px; }
+.timetable th { text-align:left; padding:10px 12px; background: rgba(58,134,255,.35); }
+.timetable th:first-child { border-radius:10px 0 0 0; } .timetable th:last-child { border-radius:0 10px 0 0; }
+.timetable td { padding:10px 12px; vertical-align:top; border-bottom:1px solid rgba(255,255,255,.1); }
+.timetable td:nth-child(-n+2) { white-space:nowrap; font-weight:600; }
+.timetable td ul { margin:0; padding-left:16px; } .timetable td li { margin:2px 0; }
+.timetable tr:nth-child(even) td { background: rgba(255,255,255,.04); }
+.timetable tr.off td { color:#8fa6c6; font-style:italic; }
+.timetable tr.now td { background: rgba(255,190,11,.2); box-shadow: inset 3px 0 0 #ffbe0b; }
+@media print {
+    .bg,.bg-shade,#particles,.site-nav,#timer,.share,.target,.message-card,.header-group,.exams:not(.timetable),.wk-tabs,#confetti { display:none !important; }
+    body { background:#fff; } .timetable { background:#fff; color:#000; box-shadow:none; border:0; width:100%; }
+    .timetable td, .timetable th, .timetable caption, .timetable h2 { color:#000; background:#fff !important; border-bottom:1px solid #999; text-shadow:none; }
+}
+
+/* sessions */
+#papers li { grid-template-columns: 1fr auto auto auto; }
+#papers .pt { background:#ffbe0b; color:#06223f; font-weight:800; font-size:13px; padding:3px 9px; border-radius:999px; }
+.timetable th small { display:block; font-weight:600; color:#ffd166; font-size:12px; }
+.timetable table { min-width: 620px; } .timetable td.none { color:#6f86a8; }
+.timetable td:nth-child(3) { border-left:3px solid rgba(255,190,11,.55); } .timetable td:nth-child(4) { border-left:3px solid rgba(58,134,255,.7); }
+@media (max-width:480px){ #papers li { grid-template-columns: 1fr auto auto; } #papers .pd { grid-column:1; grid-row:2; } #papers .pt { grid-column:2; grid-row:1 / span 2; align-self:center; } #papers .pl { grid-column:3; grid-row:1 / span 2; } }
+@media print { .timetable table { min-width:0; } }

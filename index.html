@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>Countdown to GDE NSC 2026</title>
 
     <meta name="description" content="GDE NSC 2026 Countdown - Success is Intentional!">
@@ -91,6 +93,20 @@
             </div>
         </div>
 
+        <section class="exams" aria-labelledby="exams-h">
+            <h2 id="exams-h">Search my subject</h2>
+            <label for="subject" class="sr">Choose your subject</label>
+            <select id="subject"></select>
+            <ul id="papers"></ul>
+            <p class="note">Dates and start times from the NSC timetable. Always confirm with the official PDF linked above.</p>
+        </section>
+
+        <section class="exams timetable" aria-labelledby="tt-h">
+            <h2 id="tt-h">Weekly exam timetable</h2>
+            <div id="timetable"></div>
+            <p class="note">Morning papers start at 09:00 and afternoon papers at 14:00. Be seated early, and confirm with the official PDF linked above.</p>
+        </section>
+
         <a class="share" id="share" href="#" target="_blank" rel="noopener noreferrer">Share on WhatsApp</a>
     </main>
     <canvas id="confetti" aria-hidden="true"></canvas>
@@ -101,6 +117,8 @@
     </footer>
 
     <!-- Link your existing JavaScript code file here -->
+    <script src="exams.js" defer></script>
+    <script src="timetable.js" defer></script>
     <script src="script.js"></script>
 </body>
 </html>
