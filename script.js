@@ -79,3 +79,14 @@ if (sh) sh.href = "https://wa.me/?text=" + encodeURIComponent("Countdown to GDE 
 initParticles(); initParallax(); update();
 let timerId = setInterval(update, 250);
 document.addEventListener("visibilitychange", () => { clearInterval(timerId); if (!document.hidden) { update(); timerId = setInterval(update, 250); } });
+
+// Pledge Signing announcement: live "days to go" note (9 Oct 2026, SAST)
+(function () {
+    const day = ymd => Date.UTC(...ymd.split("-").map((n, i) => i === 1 ? n - 1 : +n)) / 864e5;
+    function pledge() {
+        const n = day("2026-10-09") - day(new Intl.DateTimeFormat("en-CA", { timeZone: "Africa/Johannesburg" }).format(new Date()));
+        document.querySelectorAll(".pl-note").forEach(e => e.textContent = n > 1 ? "That\u2019s in " + n + " days!" : n === 1 ? "That\u2019s tomorrow!" : n === 0 ? "That\u2019s TODAY!" : "The Class of 2026 has taken the pledge \u2013 finish strong!");
+        if (n < 0) document.querySelectorAll(".pl-main").forEach(e => e.textContent = "Congratulations to the Class of 2026 on signing the NSC pledge.");
+    }
+    pledge(); setInterval(pledge, 60000);
+})();
