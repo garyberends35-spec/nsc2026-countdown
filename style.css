@@ -413,3 +413,23 @@ h2 {
 .timetable td:nth-child(3) { border-left:3px solid rgba(255,190,11,.55); } .timetable td:nth-child(4) { border-left:3px solid rgba(58,134,255,.7); }
 @media (max-width:480px){ #papers li { grid-template-columns: 1fr auto auto; } #papers .pd { grid-column:1; grid-row:2; } #papers .pt { grid-column:2; grid-row:1 / span 2; align-self:center; } #papers .pl { grid-column:3; grid-row:1 / span 2; } }
 @media print { .timetable table { min-width:0; } }
+
+/* ===== Heading: title leads, 2026 in gold, full name underneath ===== */
+h1 {
+    font: 400 clamp(60px, 13vw, 150px)/1 'Bebas Neue', Impact, 'Arial Narrow', sans-serif;
+    letter-spacing: .08em;
+    margin: 0;
+    color: #fff;
+    text-shadow: 0 3px 16px rgba(0,0,0,.75), 0 0 2px rgba(0,0,0,.5);
+}
+h1 .yr { color: #ffbe0b; }
+.fullname {
+    font-size: clamp(11px, 1.5vw, 16px);
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #dbe8ff;
+    margin: 6px 0 10px;
+    text-shadow: 0 2px 10px rgba(0,0,0,.85);
+}
+.brand { font-size: clamp(26px, 5.2vw, 62px); letter-spacing: .14em; margin-top: 0; }
